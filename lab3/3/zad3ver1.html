@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Tytuł strony
+    </title>
+</head>
+
+<body>
+    <form>
+        <input type="text" id="licznik" name="licznik" value="10"><br>
+        <span>0</span>
+        <span>0</span>
+        <span>0</span>
+        <span>0</span>
+        <span>0</span>
+        <span>0</span>
+        <span>0</span>
+        <span>0</span>
+        <span>0</span>
+        <span>0</span>
+    </form>
+
+    <script defer>
+        window.setInterval(decrement, 1000);
+        var counter = document.querySelector("#licznik");
+        counter.addEventListener('change', updateValue, false);
+        var value = counter.value;
+
+        function decrement() {
+            if (value > 0) {
+                value -= 1;
+                var spanElements = document.querySelectorAll("span");
+
+                for (var i = 0; i < spanElements.length; i++) {
+                    spanElements[i].childNodes[0].nodeValue = value;
+                }
+
+                if(value == 0) {
+                    counter.value = 0;
+                }
+            }
+
+        }
+
+        function updateValue() {
+            value = counter.value;
+        }
+    </script>
+</body>
+
+</html>

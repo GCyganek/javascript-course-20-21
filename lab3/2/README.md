@@ -1,0 +1,1 @@
+### testing setTimeout and setInterval functions behaviour with time consuming calculations

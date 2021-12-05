@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Tytuł strony
+    </title>
+</head>
+
+<body>
+    <form>
+        <input type="text" id="licznik" name="licznik" value="10"><br>
+        <span-component count="10"></span-component>
+        <span-component count="10"></span-component>
+        <span-component count="10"></span-component>
+        <span-component count="10"></span-component>
+        <span-component count="10"></span-component>
+        <span-component count="10"></span-component>
+        <span-component count="10"></span-component>
+        <span-component count="10"></span-component>
+        <span-component count="10"></span-component>
+        <span-component count="10"></span-component>
+    </form>
+
+    <script defer>
+        var counter = document.querySelector("#licznik");
+        counter.addEventListener('change', updateValue, false);
+        var value = counter.value;
+
+        function updateValue() {
+            var counters = document.querySelectorAll("span-component");
+            for (var i = 0; i < counters.length; i++) {
+                counters[i].setAttribute("count", counter.value)
+            }
+        }
+
+        class SpanComponent extends HTMLElement {
+            constructor() {
+                super();
+                let shadowRoot = this.attachShadow({mode: 'open'});
+                this.shadowRoot.innerHTML = "10";
+                window.setInterval(this.decrement.bind(this), 1000);
+            }
+
+            static get observedAttributes() {
+                return ["count"];
+            }
+
+            decrement() {
+                let val = this.getAttribute("count");
+                if (val > 0) {
+                    this.setAttribute("count", val - 1);
+
+                    if(this.getAttribute("count") == 0) {
+                        counter.value = 0;
+                    }
+                }
+            }
+
+            attributeChangedCallback(prop, oldVal, newVal) {
+                if (prop === "count") { 
+                    this.shadowRoot.innerHTML = newVal;
+                }
+            }
+        }
+
+        customElements.define('span-component', SpanComponent);
+    </script>
+</body>
+
+</html>
