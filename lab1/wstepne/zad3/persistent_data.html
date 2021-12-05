@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible"
+          content="ie=edge">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+    <title>
+      Persistent data
+    </title>
+  </head>
+  <body>
+      <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top">
+            <a class="nav-link d-md-none" href="main_page.html" style="color:gray">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                  <span class="navbar-toggler-icon" syle="color:black;"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+                  <ul class="navbar-nav">
+                        <li class="nav-item d-none d-md-block">
+                          <a class="nav-link" href="main_page.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="prologue.html">Page 1</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="meadowfield.html">Page 2</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="the_task.html">Page 3</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="persistent_data.html" style="color:rgb(163, 163, 33)">Page 4</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="simulation.html">Page 5</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="the_mail_trucks_route.html">Page 6</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="pathfinding.html">Page 7</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="exercises.html">Page 8</a>
+                        </li>
+                  </ul>
+            </div>
+          </nav>
+
+    <main style="margin:10vw;margin-top:10vh;margin-bottom:10vh;">
+      <div class="row card bg-light" style="margin-top:3vw;padding:1vw">
+        <div class="jumbotron" style="margin-bottom:0">
+          <h4 style="font-size:calc(1.5vw + 1.5vh + .5vmin)" class="card-title"><i class="fas fa-database"></i>  PERSISTENT DATA</h4>
+        </div>
+        <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          Data structures that don’t change are called <em>immutable</em> or <em>persistent</em>. 
+          They behave a lot like strings and numbers in that they are who they are and staythat way, 
+          rather than containing different things at different times.</p>
+      </div>
+
+      <div class="row" style="margin-top:3vw"> 
+        <div class="col-md-7 card bg-light" style="padding:1vw;">
+          <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            In JavaScript, just about everything <em>can</em> be changed, 
+            so working with valuesthat are supposed to be persistent requires some restraint. 
+            There is a functioncalled <em>Object.freeze</em> that changes an object so that writing to its propertiesis ignored. 
+            You could use that to make sure your objects aren’t changed, ifyou want to be careful. 
+            Freezing does require the computer to do some extrawork, and having updates ignored is 
+            just about as likely to confuse someone ashaving them do the wrong thing. So I usually 
+            prefer to just tell people that agiven object shouldn’t be messed with and hope they remember it.
+          </p>
+        </div> 
+        <div class="col-md-5 card bg-dark" style="padding:1vw;">
+          <pre style="font-size:calc(.9vw + .9vh)" class="card-text text-white">
+let object = Object.freeze({value: 5});
+object.value = 10;
+console.log(object.value);
+// → 5</pre>
+        </div>
+      </div>
+
+      <div class="row card bg-light" style="margin-top:3vw;padding:1vw">
+          <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          Why am I going out of my way to not change objects when the language isobviously expecting me to?
+          </p>
+          <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          Because it helps me understand my programs.  
+          This is about complexitymanagement again. When the objects in my system are fixed, 
+          stable things,I can consider operations on them in isolation—moving to Alice’s house 
+          froma given start state always produces the same new state. When objects changeover time, 
+          that adds a whole new dimension of complexity to this kind ofreasoning.          
+          </p>
+          <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            For a small system like the one we are building in this chapter, we couldhandle that bit of extra complexity. 
+            But the most important limit on what kindof systems we can build is how much we can understand. Anything that
+             makesyour code easier to understand makes it possible to build a more ambitioussystem.
+          </p>
+          <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            Unfortunately, although understanding a system built on persistent datastructures is easier,designingone, 
+            especially when your programming language isn’t helping, can be a little harder. We’ll look for opportunities
+             to use persis-tent data structures in this book, but we’ll also be using changeable ones.
+          </p>
+
+      </div>
+  
+    </main>
+
+    <footer>
+      <nav class="navbar fixed-bottom navbar-light bg-light justify-content-center align-items-center " style="text-align:center">
+        <p style="font-size:calc(.9vw + .9vh)">Interactive version of <em>"Eloquent Javascript Third Edition. 
+          A modern Introduction to Programming"</em>
+          chapter 7 written by Marjin Haverbeke</p>
+      </nav>      
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+          integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+          crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+          crossorigin="anonymous"></script>
+  </body>
+</html>

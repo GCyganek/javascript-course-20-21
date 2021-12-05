@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible"
+          content="ie=edge">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+    <title>
+      Simulation
+    </title>
+  </head>
+  <body>
+      <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top">
+            <a class="nav-link d-md-none" href="main_page.html" style="color:gray">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                  <span class="navbar-toggler-icon" syle="color:black;"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+                  <ul class="navbar-nav">
+                        <li class="nav-item d-none d-md-block">
+                          <a class="nav-link" href="main_page.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="prologue.html">Page 1</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="meadowfield.html">Page 2</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="the_task.html">Page 3</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="persistent_data.html">Page 4</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="simulation.html" style="color:rgb(163, 163, 33)">Page 5</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="the_mail_trucks_route.html">Page 6</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="pathfinding.html">Page 7</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="exercises.html">Page 8</a>
+                        </li>
+                  </ul>
+            </div>
+          </nav>
+
+    <main style="margin:10vw;margin-top:10vh;margin-bottom:10vh;">
+      <div class="row card bg-light" style="margin-top:3vw;padding:1vw">
+        <div class="jumbotron" style="margin-bottom:0">
+          <h4 style="font-size:calc(1.5vw + 1.5vh + .5vmin)" class="card-title"><i class="fas fa-wrench"></i>  SIMULATION</h4>
+        </div>
+        <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          A delivery robot looks at the world and decides in which direction it wantsto move.  
+          As such, we could say that a robot is a function that takes a <em>VillageState</em> object and 
+          returns the name of a nearby place.</p>
+        <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          Because we want robots to be able to remember things, 
+          so that they canmake and execute plans, we also pass them 
+          their memory and allow them toreturn a new memory. Thus, 
+          the thing a robot returns is an object containingboth the 
+          direction it wants to move in and a memory value that will 
+          be givenback to it the next time it is called.</p>
+      </div>
+
+      <div class="row card bg-dark" style="margin-top:3vw;padding:1vw">
+        <pre style="font-size:calc(.9vw + .9vh)" class="card-text text-white ">
+function runRobot(state, robot, memory) {
+  for (let turn = 0;; turn++) {
+    if (state.parcels.length == 0) {
+      console.log(`Done in ${turn} turns`);
+      break;
+    }
+    let action = robot(state, memory);
+    state = state.move(action.direction);
+    memory = action.memory;
+    console.log(`Moved to ${action.direction}`);
+  }
+}</pre>
+      </div>
+
+      <div class="row card bg-light" style="margin-top:3vw;padding:1vw">
+        <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          Consider what a robot has to do to “solve” a given state. 
+          It must pick upall parcels by visiting every location that
+           has a parcel and deliver them byvisiting every location 
+           that a parcel is addressed to, but only after picking up the parcel.</p>
+        <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          Because we want robots to be able to remember things, 
+          so that they canmake and execute plans, we also pass them 
+          their memory and allow them toreturn a new memory. Thus, 
+          the thing a robot returns is an object containingboth the 
+          direction it wants to move in and a memory value that will 
+          be givenback to it the next time it is called.
+        </p>
+        <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          What is the dumbest strategy that could possibly work? 
+          The robot couldjust walk in a random direction every turn. 
+          That means, with great likelihood,it will eventually run into 
+          all parcels and then also at some point reach theplace where they should be delivered.
+        </p>
+        <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          Here’s what that could look like:
+        </p>
+          <pre style="font-size:calc(.9vw + .9vh)" class="card-text text-white bg-dark">
+function randomPick(array) {
+  let choice = Math.floor(Math.random() * array.length);
+  return array[choice];}
+  
+function randomRobot(state) {
+  return {direction: randomPick(roadGraph[state.place])};
+}</pre>
+      </div>
+
+      <div class="row card bg-light" style="margin-top:3vw;padding:1vw">
+        <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          Remember that <em>Math.random()</em> returns a number between zero and one—butalways below one.
+           Multiplying such a number by the length of an array andthen applyingMath.floorto it
+            gives us a random index for the array.</p>
+        <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          Since this robot does not need to remember anything, it ignores its secondargument 
+          (remember that JavaScript functions can be called with extra argu-ments without ill effects)
+           and omits the <em>memory</em> property in its returned object.
+        </p>
+        <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          What is the dumbest strategy that could possibly work? 
+          The robot couldjust walk in a random direction every turn. 
+          That means, with great likelihood,it will eventually run into 
+          all parcels and then also at some point reach theplace where they should be delivered.
+        </p>
+        <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          To put this sophisticated robot to work, we’ll first 
+          need a way to create anew state with some parcels. 
+          A static method (written here by directly addinga property to the constructor) 
+          is a good place to put that functionality.
+        </p>
+      </div>
+
+      <div class="row card bg-dark text-white" style="padding:1vw;margin-top:3vw">
+        <pre style="font-size:calc(.9vw + .9vh)" class="card-text text-white">
+VillageState.random = function(parcelCount = 5) {
+  let parcels = [];
+  for (let i = 0; i < parcelCount; i++) {
+    let address = randomPick(Object.keys(roadGraph));
+    let place;
+    do {
+      place = randomPick(Object.keys(roadGraph));
+    } while (place == address);
+    parcels.push({place, address});
+  }
+  return new VillageState("Post Office", parcels);
+};</pre>
+    </div>
+
+    <div class="row" style="margin-top:3vw">
+      <div class=" col-md-4 card bg-light" style="padding:1vw">
+        <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          We don’t want any parcels that are sent from the same place that they areaddressed to. 
+          For this reason, the <em>do</em> loop keeps picking new places when itgets one that’s equal to the address.
+        </p>
+        <p style="font-size:calc(1vw + 1vh)" class="card-text">
+          Let’s start up a virtual world.
+        </p>
+      </div>
+      <div class=" col-md-6 card bg-dark text-white" style="padding:1vw;">
+        <pre style="font-size:calc(.9vw + .9vh)" class="card-text text-white">
+  runRobot(VillageState.random(), randomRobot);
+  // → Moved to Marketplace
+  // → Moved to Town Hall
+  // →...
+  // → Done in 63 turns</pre>
+    </div>
+    <div class=" card col-md-2 bg-light" style="padding:1vw">
+      <p style="font-size:calc(1vw + 1vh)" class="card-text">
+        It takes the robot a lot of turns to deliver the parcels because it isn’t planningahead very well. We’ll address that soon.
+      </p>
+    </div>
+    </div>
+    
+  
+    </main>
+
+    <footer>
+      <nav class="navbar fixed-bottom navbar-light bg-light justify-content-center align-items-center " style="text-align:center">
+        <p style="font-size:calc(.9vw + .9vh)">Interactive version of <em>"Eloquent Javascript Third Edition. 
+          A modern Introduction to Programming"</em>
+          chapter 7 written by Marjin Haverbeke</p>
+      </nav>      
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+          integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+          crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+          crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible"
+          content="ie=edge">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+          integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+
+    <title>
+      Exercises
+    </title>
+  </head>
+  <body>
+      <nav class="navbar navbar-expand-md bg-light navbar-light fixed-top">
+            <a class="nav-link d-md-none" href="main_page.html" style="color:gray">Home</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                  <span class="navbar-toggler-icon" syle="color:black;"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
+                  <ul class="navbar-nav">
+                        <li class="nav-item d-none d-md-block">
+                          <a class="nav-link" href="main_page.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="prologue.html">Page 1</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="meadowfield.html">Page 2</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="the_task.html">Page 3</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="persistent_data.html">Page 4</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="simulation.html">Page 5</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="the_mail_trucks_route.html">Page 6</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="pathfinding.html">Page 7</a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="exercises.html" style="color:rgb(163, 163, 33)">Page 8</a>
+                        </li>
+                  </ul>
+            </div>
+          </nav>
+
+    <main style="margin:10vw;margin-top:10vh;margin-bottom:15vh;">
+      <div class="row card bg-light" style="margin-top:3vw;padding:1vw">
+        <div class="jumbotron" style="margin-bottom:0">
+          <h4 style="font-size:calc(1.5vw + 1.5vh + .5vmin)" class="card-title"></i><i class="fas fa-running"></i>  EXERCISES </h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4 card bg-light" style="margin-top:3vw;padding:1vw">
+          <div class="jumbotron bg-info" style="margin-bottom:0; padding:2vw">
+            <h4 style="font-size:calc(1.5vw + 1.5vh + .5vmin)" class="card-title">MEASURING A ROBOT</h4>
+          </div>
+          <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            It’s hard to objectively compare robots by just letting them solve a few scenarios. Maybe one robot just
+             happened to get easier tasks or the kind of tasks that it is good at, whereas the other didn’t.
+          </p>
+          <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            Write a function <em>compareRobots</em>> that takes two robots (and their starting memory).
+             It should generate 100 tasks and let each of the robots solve eachof these tasks. When done, it should output the average number of steps eachrobot took per task
+          </p>
+          <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            For the sake of fairness, make sure you give each task to both robots, rather than generating different tasks per robot.
+          </p>
+        </div>
+        <div class="col-md-4 card bg-light" style="margin-top:3vw;padding:1vw">
+          <div class="jumbotron bg-info" style="margin-bottom:0; padding:2vw">
+            <h4 style="font-size:calc(1.5vw + 1.5vh + .5vmin)" class="card-title">ROBOT EFFICIENCY</h4>
+          </div>
+          <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            Can you write a robot that finishes the delivery task faster than <em>goalOrientedRobots</em>>? 
+            If you observe that robot’s behavior, what obviously stupid things does itdo? How could those be improved?
+          </p>
+          <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            If you solved the previous exercise, you might want to use your <em>compareRobots</em> function
+             to verify whether you improved the robot.
+          </p>
+        </div>
+        <div class="col-md-4 card bg-light" style="margin-top:3vw;padding:1vw">
+          <div class="jumbotron bg-info" style="margin-bottom:0; padding:2vw">
+           <h4 style="font-size:calc(1.5vw + 1.5vh + .5vmin)" class="card-title">PERSISTENT GROUP</h4>
+          </div>
+          <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            Most data structures provided in a standard JavaScript environment aren’t very well suited 
+            for persistent use. Arrays have <em>slice</em> and <em>concat</em> methods,which allow us to easily create new 
+            arrays without damaging the old one. ButSet, for example, has no methods for creating a new 
+            <em>set</em> with an item added orremoved.
+           </p>
+           <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            Write a new class <em>PGroup</em>, similar to the <em>Group</em> class from <em>Chapter 6</em>, 
+            which stores a set of values. Like <em>Group</em>, it has <em>add</em>, <em>delete</em>>, and <em>has</em> methods.
+           </p>
+           <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            Its <em>add</em> method, however, should return a new <em>PGroup</em> instance with the given member added and leave the old one unchanged.
+             Similarly, <em>delete</em> creates a new instance without a given member.
+           </p>
+           <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            The class should work for values of any type, not just strings. 
+            It does <em>not</em> have to be efficient when used with large amounts of values.
+           </p>
+           <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            The constructor shouldn’t be part of the class’s interface (though you’ll def-initely want to use it internally). 
+            Instead, there is an empty instance, <em>PGroup.empty</em>, that can be used as a starting value.
+           </p>
+           <p style="font-size:calc(1vw + 1vh)" class="card-text">
+            Why do you need only one <em>PGroup.empty</em> value, rather than having a functionthat creates a new, empty map every time?
+           </p>
+        </div>
+      </div>
+
+
+      <div class="row card bg-secondary" style="margin-top:3vw;padding:1vw">
+        <blockquote style="font-size:calc(1vw + 1vh)" class="card-text text-white" >
+          <em>“Debugging is twice as hard as writing the code in the first place. Therefore, 
+            if you write the code as cleverly as possible, you are, bydefinition, not smart enough to debug it.”</em><br>
+          —Brian Kernighan and P.J. Plauger, The Elements of Programming Style
+        </blockquote>
+      </div>
+    </main>
+
+    <footer>
+      <nav class="navbar fixed-bottom navbar-light bg-light justify-content-center align-items-center " style="text-align:center">
+        <p style="font-size:calc(.9vw + .9vh)">Interactive version of <em>"Eloquent Javascript Third Edition. 
+          A modern Introduction to Programming"</em>
+          chapter 7 written by Marjin Haverbeke</p>
+      </nav>      
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+          integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+          crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+          crossorigin="anonymous"></script>
+  </body>
+</html>
