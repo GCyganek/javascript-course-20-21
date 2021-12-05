@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      Page title
+    </title>
+    <script>
+        function draw() {
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            ctx.fillText("Hello World", 10, 50); //Wykreślenie podanego tekstu na płótnie / Drawing given text on canvas
+
+            ctx.fillStyle = 'red';
+            ctx.fillRect(10, 75, 100, 75);
+            ctx.strokeRect(10, 75, 100, 75);
+
+            ctx.fillStyle = 'blue';
+            ctx.beginPath();
+            ctx.moveTo(10, 200);
+            ctx.lineTo(10, 275);
+            ctx.lineTo(100, 275);
+            ctx.lineTo(10, 200);
+            ctx.closePath();
+            ctx.lineWidth = 5;
+            ctx.stroke();
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(130, 210, 40, 2 * Math.PI, 0, false);
+            ctx.closePath();
+            ctx.fillStyle = 'yellow';
+            ctx.fill();
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+    </script>
+  </head>
+  <body onload="draw();">
+    <main>
+      <h1>
+        Płótno
+      </h1>
+
+      <h1>
+        Canvas
+      </h1>
+
+      <canvas id="canvas"
+              width="200"
+              height="300"
+              style="border:1px solid #000000;">
+        Wygląda na to, że twoja przeglądarka nie obsługuje elementu "canvas" / It looks like your browser does not support the "canvas" element
+      </canvas>
+    </main>
+  </body>
+</html>

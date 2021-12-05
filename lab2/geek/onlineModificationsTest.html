@@ -1,0 +1,58 @@
+<!-- Źródło / Source: https://mochajs.org/#running-mocha-in-the-browser -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>
+      Mocha tests
+    </title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://unpkg.com/mocha/mocha.css">
+  </head>
+  <body>
+    <pre>
+pole tekstowe czyta ostatnia wprowadzona komende. nalezy wziac pod uwage, ze po wykonaniu testow kolekcje nie sa puste
+w kolekcji localStorage jest item2, tak samo jak i w kolekcji Map
+    </pre>
+    <form style="margin:2vw;">
+        <textarea id="w3review" name="w3review" rows="10" cols="50">
+        </textarea>
+        <div>
+            <input type="checkbox" id="webStorage" name="webStorage" value="webStorage">
+            <label for="webStorage">Web Storage</label>
+        </div>
+        <div>
+            <button type="button" id="dodaj" onclick="addButton()">Dodaj</button> 
+            <button type="button" id="wypisz" onclick="buttonWrite()">Wypisz</button> 
+        </div>
+    </form>
+
+    <div id="mocha">
+    </div>
+    <div>
+        <button type="button" id="wypisz" onclick="drawCurrentPieChart()">Narysuj wykres</button> 
+    </div>
+    <div>
+        <canvas id="canvas"
+        width="500"
+        height="500">
+        Wygląda na to, że twoja przeglądarka nie obsługuje elementu "canvas" / It looks like your browser does not support the "canvas" element
+        </canvas>
+      </div>
+    <script src="https://unpkg.com/chai/chai.js"></script>
+    <script src="https://unpkg.com/mocha/mocha.js"></script>
+    <script class="mocha-init">
+
+      mocha.setup('bdd');
+      mocha.checkLeaks();
+    </script>
+    <script src="piechartForOnlineTest.js"></script>
+    <script src="script.js"></script>
+    <script class="mocha-exec">
+
+      mocha.run();
+    </script>
+  </body>
+</html>

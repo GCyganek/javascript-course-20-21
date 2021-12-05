@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="script1.js" async></script>  
+  </head>
+  <body onLoad="
+            console.log('Tekst 1');
+            window.alert('Tekst 2');
+          ">
+    <!--
+        Nalezalo usunac document.write(), gdyz wywolany na zaladowanym dokumencie powoduje otwarcie na nowo strumienia zapisu do dokumentu
+        (document.open()) co powoduje wymazanie poprzednio zapisanych na stronie informacji
+    -->
+    <div>Treść dokumentu HTML</div>
+    <div>Treść dokumentu HTML</div>
+    <div>Treść dokumentu HTML</div>
+
+    <form>
+        <input name="pole_tekstowe" type="text">
+        <input name="pole_liczbowe" type="number">
+        <input type="button" value="Wypisz" onClick="wypisz()">
+    </form>
+  </body>
+</html>
