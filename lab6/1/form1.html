@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>
+      Form
+    </title>
+    <script>
+        function download() {
+          var div = document.getElementById('remote');
+          div.childNodes[0].textContent = 'Downloading data';
+
+          const area = document.getElementById('area').value;
+          const location = document.getElementById('location').value;
+          
+          const header = new Headers();
+          header.append('Content-Type', 'text/plain')
+          remote_request = new Request(`http://worldtimeapi.org/api/timezone/${area}/${location}`,
+          {
+            method: 'GET',
+            headers: header
+          });
+
+          fetch(remote_request)
+            .then(function (response) {
+              if (!response.ok)
+                throw Error(response.statusText);
+              if (response.headers.get("Content-Type") === 'application/json; charset=utf-8')
+                response.json().then(function (json) {
+                  div.textContent = json.datetime;
+                });
+              else
+                response.text().then(function (text) {
+                  div.textContent = "The server is overloaded";
+                });
+            })
+            .catch(function (error) {
+              window.alert(error);
+            });
+
+          local_request = new Request("http://localhost:8081/",
+          {
+            method: "GET",
+            headers: header
+          });
+
+          fetch(local_request)
+            .then(function (response) {
+              if (!response.ok)
+                throw Error(response.statusText);
+              if (response.headers.get("Content-Type") === 'text/xml; charset=utf-8')
+                response.text().then(text => {
+                  let parser = new DOMParser(),
+                      xmlDoc = parser.parseFromString(text, 'text/xml');
+                  let local_div = document.getElementById('local');
+                  local_div.textContent = ""; 
+                  local_div.appendChild(xmlDoc.getElementById('date'));
+                  local_div.appendChild(xmlDoc.getElementById('time'));
+                });
+            })
+            .catch(function (error) {
+              window.alert(error);
+            });
+        }
+    </script>
+  </head>
+  <body>
+    <form>
+        <input type="text" name="area" placeholder="area" id="area">
+        <input type="text" name="location" placeholder="location" id="location">
+        <input type="button" value="Pobierz" onclick="download()"> 
+    </form>
+    <h1>Remote</h1>
+    <div id='remote'>
+    Remote date and time
+    </div>
+    <!-- ***************** -->
+    <h1>Local</h1>
+    <div id='local'>
+    Local date and time
+    </div>
+  </body>
+</html>

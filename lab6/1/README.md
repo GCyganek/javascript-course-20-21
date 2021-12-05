@@ -1,0 +1,3 @@
+**node server1.js** to launch server on localhost:8080 and test Fetch API and Ajax using buttons and text field
+
+**node server2.js** to launch server on localhost:8080 and localhost:8081 that uses Fetch API to fetch data from [WorldTime](http://worldtimeapi.org/) about time in the selected *area* and *location* as it is described on the page [WorldTime](http://worldtimeapi.org/).  Example: area = Europe; location = London. It also fetches local date from localhost:8081
