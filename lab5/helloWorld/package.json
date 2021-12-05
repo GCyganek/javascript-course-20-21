@@ -1,0 +1,28 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "The \"Hello World\" application",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx mocha",
+    "start": "node app2.js",
+    "app1": "echo 'Uruchamiam aplikacje nr 1' && node app1.js",
+    "preapp2": "echo 'Uruchamiam aplikacje nr 2'",
+    "app2": "yarn start"
+  },
+  "author": "Gabriel Cyganek",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.6",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "chai-json": "^1.0.0",
+    "mocha": "^8.4.0",
+    "supertest": "^6.1.3"
+  }
+}

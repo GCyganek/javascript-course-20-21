@@ -1,0 +1,18 @@
+{
+  "name": "zadanie-z-lab",
+  "version": "1.0.0",
+  "description": "using komunikaty.tvp.pl API to receive messages",
+  "main": "index.js",
+  "author": "Gabriel Cyganek",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongodb": "^3.6.6",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2",
+    "request": "^2.88.2"
+  },
+  "scripts": {
+    "app": "node index.js"
+  }
+}

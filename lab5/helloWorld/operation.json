@@ -1,0 +1,32 @@
+[
+    {
+        "x": 5,
+        "y": 3,
+        "operation": "multiplication"
+    },
+    {
+        "x": 6,
+        "y": 2,
+        "operation": "division"
+    },
+    {
+        "x": 5,
+        "y": 2,
+        "operation": "division"
+    },
+    {
+        "x": 23,
+        "y": 11,
+        "operation": "addition"
+    },
+    {
+        "x": 12,
+        "y": 3,
+        "operation": "subtraction"
+    },
+    {
+        "x": 5,
+        "y": 5,
+        "operation": "addition"
+    }
+]
